@@ -1,4 +1,4 @@
-# Alex Chen — Mechanical Engineering Portfolio
+# Mohammad Sharif — Mechanical Engineering Portfolio
 
 A production-quality, single-page engineering portfolio built with semantic HTML5, modular CSS3, and vanilla JavaScript. No frameworks.
 
@@ -61,8 +61,8 @@ Drop your photo as `assets/images/headshot.jpg`. The site automatically extracts
 
 ### 2. Update your info
 All personal content is in `index.html`. Search for placeholder values:
-- `Alex Chen` → your name
-- `alex.chen@hawk.iit.edu` → your email
+- `Mohammad Sharif` → your name
+- `@hawk.iit.edu` → your email
 - GitHub / LinkedIn URLs → your profile URLs
 
 ### 3. Add a project
