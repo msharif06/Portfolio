@@ -216,7 +216,17 @@
         <header class="section__header">
           <h2 class="section__title" id="expHeading">Experience</h2>
         </header>
-        <div class="timeline">
+
+        <!--
+          75/25 SPLIT LAYOUT
+          Left column (.section__col--main, 75%)  → existing timeline content, untouched.
+          Right column (.section__col--image, 25%) → side image panel, sticks while you scroll the timeline.
+          To swap the image, change the src on .section__col-img below.
+          (Each individual timeline card still has its own data-bg-img / primary image — unrelated to this panel.)
+        -->
+        <div class="section__columns">
+          <div class="section__col section__col--main">
+            <div class="timeline">
 
           <!-- ══ USG ══
                To change images, update these paths:
@@ -431,6 +441,16 @@
           </article>
 
         </div>
+          </div>
+
+          <!-- Right column (25%) — side image for the Experience section -->
+          <aside class="section__col section__col--image" aria-hidden="true">
+            <div class="section__col-img-wrap">
+              <img src="assets/images/experience_bg.jpg" alt="" class="section__col-img" loading="lazy" />
+            </div>
+          </aside>
+        </div>
+
       </div>
     </section>
 
@@ -440,7 +460,15 @@
         <header class="section__header">
           <h2 class="section__title" id="projectsHeading">Projects</h2>
         </header>
-        <div class="projects__grid">
+
+        <!--
+          75/25 SPLIT LAYOUT — same pattern as Experience above.
+          Left column (75%) → existing project cards grid, untouched.
+          Right column (25%) → side image panel. Swap src on .section__col-img to change it.
+        -->
+        <div class="section__columns">
+          <div class="section__col section__col--main">
+            <div class="projects__grid">
           <a href="projects/tomato-slicer.html" class="project-card">
             <div class="project-card__image-wrap">
               <img src="assets/images/tomato-slicer.jpg" alt="Tomato slicer" class="project-card__image" loading="lazy" />
@@ -484,7 +512,17 @@
               <div class="project-card__tags"><span class="tag tag--muted">TBD</span></div>
             </div>
           </a>
+            </div>
+          </div>
+
+          <!-- Right column (25%) — side image for the Projects section -->
+          <aside class="section__col section__col--image" aria-hidden="true">
+            <div class="section__col-img-wrap">
+              <img src="assets/images/project_bg.jpg" alt="" class="section__col-img" loading="lazy" />
+            </div>
+          </aside>
         </div>
+
       </div>
     </section>
 
