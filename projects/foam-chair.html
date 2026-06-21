@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sustainable Foam Chair — Mohammad Sharif</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Agu+Display&family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/animations.css" />
+  <link rel="stylesheet" href="../css/project.css" />
+</head>
+<body class="theme-light">
+
+  <header class="project-header">
+    <a href="../index.html#projects" class="project-back">
+      <i class="fa-solid fa-arrow-left"></i> Back to Projects
+    </a>
+    <div class="project-header__tags">
+      <span class="tag">Structural Analysis</span>
+      <span class="tag">Materials</span>
+      <span class="tag">Sustainability</span>
+    </div>
+  </header>
+
+  <main class="project-main">
+
+    <section class="project-hero">
+      <span class="section__label">Engineering Project</span>
+      <h1 class="project-hero__title">Sustainable Foam Chair</h1>
+      <p class="project-hero__subtitle">Structurally optimized seating with sustainability as a primary design constraint</p>
+      <div class="project-hero__image-wrap">
+        <img src="../assets/images/foam-chairs.jpg" alt="Sustainable Foam Chair" class="project-hero__image" loading="eager" onerror="this.parentElement.style.display='none'" />
+      </div>
+    </section>
+
+    <div class="project-body">
+
+      <div class="project-sections">
+        <section class="project-section reveal">
+          <h2 class="project-section__title">Overview</h2>
+          <p class="project-section__text">An environmentally conscious seating design that applies structural optimization and material lifecycle analysis to minimize environmental impact without sacrificing comfort or durability. Load paths were analyzed via FEA and material selection was guided by LCA data.</p>
+        </section>
+        <section class="project-section reveal"><h2 class="project-section__title">Requirements</h2><p class="project-section__text project-section__placeholder"><i class="fa-solid fa-clock-rotate-left"></i> Content in progress — check back soon.</p></section>
+        <section class="project-section reveal"><h2 class="project-section__title">Design Process</h2><p class="project-section__text project-section__placeholder"><i class="fa-solid fa-clock-rotate-left"></i> Content in progress — check back soon.</p></section>
+        <section class="project-section reveal"><h2 class="project-section__title">CAD &amp; Analysis</h2><p class="project-section__text project-section__placeholder"><i class="fa-solid fa-clock-rotate-left"></i> Content in progress — check back soon.</p></section>
+        <section class="project-section reveal"><h2 class="project-section__title">Manufacturing &amp; Testing</h2><p class="project-section__text project-section__placeholder"><i class="fa-solid fa-clock-rotate-left"></i> Content in progress — check back soon.</p></section>
+        <section class="project-section reveal"><h2 class="project-section__title">Results &amp; Lessons Learned</h2><p class="project-section__text project-section__placeholder"><i class="fa-solid fa-clock-rotate-left"></i> Content in progress — check back soon.</p></section>
+      </div>
+
+      <aside class="project-gallery-col" aria-label="Project gallery">
+        <p class="project-gallery-col__heading">Gallery</p>
+        <div class="project-gallery__placeholder"><i class="fa-solid fa-images"></i><span>Photos coming soon</span></div>
+      </aside>
+
+    </div>
+
+    <nav class="project-nav" aria-label="Project navigation">
+      <a href="tomato-slicer.html" class="project-nav__btn project-nav__btn--prev">
+        <span class="project-nav__direction"><i class="fa-solid fa-arrow-left"></i> Previous</span>
+        <span class="project-nav__name">Tomato Slicer</span>
+        <span class="project-nav__sub">(Mechanism Design · SolidWorks)</span>
+      </a>
+      <div class="project-nav__center">
+        <a href="../index.html#projects" class="btn btn--secondary">All Projects</a>
+      </div>
+      <a href="quadruped.html" class="project-nav__btn project-nav__btn--next">
+        <span class="project-nav__direction">Next <i class="fa-solid fa-arrow-right"></i></span>
+        <span class="project-nav__name">Bio-Inspired Quadruped Robot</span>
+        <span class="project-nav__sub">(Robotics · Python · 3D Printing)</span>
+      </a>
+    </nav>
+
+  </main>
+
+  <script src="../js/theme.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.reveal').forEach(el => {
+        const obs = new IntersectionObserver(entries => {
+          entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-revealed'); obs.unobserve(e.target); } });
+        }, { rootMargin: '0px 0px -60px 0px', threshold: 0.08 });
+        obs.observe(el);
+      });
+    });
+  </script>
+</body>
+</html>

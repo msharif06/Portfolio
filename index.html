@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Mechanical Engineering Student Portfolio — Illinois Institute of Technology" />
+  <title>Mohammad Sharif — Mechanical Engineering</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Agu+Display&family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body class="theme-light" data-sidebar="expanded">
+
+  <!-- ═══ SIDEBAR ═══ -->
+  <aside class="sidebar" id="sidebar" role="navigation" aria-label="Main navigation">
+
+    <button class="sidebar__toggle" id="sidebarToggle" aria-label="Toggle sidebar" aria-expanded="true">
+      <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+    </button>
+
+    <nav class="sidebar__nav" aria-label="Sections">
+      <ul class="sidebar__nav-list" role="list">
+        <li class="sidebar__nav-item">
+          <a href="#overview" class="sidebar__nav-link" data-section="overview">
+            <span class="sidebar__nav-num">01</span>
+            <span class="sidebar__nav-label">Overview</span>
+          </a>
+        </li>
+        <li class="sidebar__nav-item">
+          <a href="#about" class="sidebar__nav-link" data-section="about">
+            <span class="sidebar__nav-num">02</span>
+            <span class="sidebar__nav-label">About Me</span>
+          </a>
+        </li>
+        <li class="sidebar__nav-item sidebar__nav-item--dropdown">
+          <button class="sidebar__nav-link sidebar__nav-link--dropdown" data-section="experience" aria-expanded="false" aria-controls="expMenu">
+            <span class="sidebar__nav-num">03</span>
+            <span class="sidebar__nav-label">Experience</span>
+            <i class="fa-solid fa-chevron-down sidebar__nav-chevron" aria-hidden="true"></i>
+          </button>
+          <ul class="sidebar__dropdown" id="expMenu" role="list">
+            <li><a href="#usg"        class="sidebar__dropdown-link" data-section="usg">USG Co-op</a></li>
+            <li><a href="#cure"       class="sidebar__dropdown-link" data-section="cure">Project C.U.R.E.</a></li>
+            <li><a href="#leadership" class="sidebar__dropdown-link" data-section="leadership">Leadership</a></li>
+          </ul>
+        </li>
+        <li class="sidebar__nav-item sidebar__nav-item--dropdown">
+          <button class="sidebar__nav-link sidebar__nav-link--dropdown" data-section="projects" aria-expanded="false" aria-controls="projMenu">
+            <span class="sidebar__nav-num">04</span>
+            <span class="sidebar__nav-label">Projects</span>
+            <i class="fa-solid fa-chevron-down sidebar__nav-chevron" aria-hidden="true"></i>
+          </button>
+          <ul class="sidebar__dropdown" id="projMenu" role="list">
+            <li><a href="projects/tomato-slicer.html" class="sidebar__dropdown-link">Tomato Slicer</a></li>
+            <li><a href="projects/foam-chair.html"    class="sidebar__dropdown-link">Sustainable Foam Chair</a></li>
+            <li><a href="projects/quadruped.html"     class="sidebar__dropdown-link">Bio-Inspired Quadruped</a></li>
+            <li><a href="projects/senior-design.html" class="sidebar__dropdown-link sidebar__dropdown-link--muted">Future Senior Design</a></li>
+          </ul>
+        </li>
+        <li class="sidebar__nav-item">
+          <a href="#resources" class="sidebar__nav-link" data-section="resources">
+            <span class="sidebar__nav-num">05</span>
+            <span class="sidebar__nav-label">Resources</span>
+          </a>
+        </li>
+        <!-- Skills is now 06 -->
+        <li class="sidebar__nav-item">
+          <a href="#skills" class="sidebar__nav-link" data-section="skills">
+            <span class="sidebar__nav-num">06</span>
+            <span class="sidebar__nav-label">Skills</span>
+          </a>
+        </li>
+        <!-- Contact is now 07 -->
+        <li class="sidebar__nav-item">
+          <a href="#contact" class="sidebar__nav-link" data-section="contact">
+            <span class="sidebar__nav-num">07</span>
+            <span class="sidebar__nav-label">Contact</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="sidebar__progress-track" aria-hidden="true">
+      <div class="sidebar__progress-bar" id="scrollProgress"></div>
+    </div>
+
+    <div class="sidebar__bottom">
+      <div class="sidebar__credentials">
+        <p>Illinois Institute of Technology</p>
+        <p>Mechanical Engineering</p>
+        <p>3.7 GPA</p>
+        <p>CSWP</p>
+        <p>Project Engineer</p>
+        <p>Baltimore, MD</p>
+      </div>
+      <div class="sidebar__actions">
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <i class="fa-brands fa-github" aria-hidden="true"></i>
+        </a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+        </a>
+        <!-- Resume tooltip on hover -->
+        <a href="assets/pdf/resume.pdf" download class="sidebar__resume-link" aria-label="Download resume">
+          <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
+          <span class="sidebar__resume-tooltip">Download Resume</span>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode" role="switch" aria-checked="false">
+          <span class="theme-toggle__track">
+            <span class="theme-toggle__thumb">
+              <i class="fa-solid fa-moon  theme-toggle__icon theme-toggle__icon--dark"  aria-hidden="true"></i>
+              <i class="fa-solid fa-sun   theme-toggle__icon theme-toggle__icon--light" aria-hidden="true"></i>
+            </span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Hamburger -->
+  <button class="hamburger" id="hamburger" aria-label="Open navigation" aria-expanded="false">
+    <span class="hamburger__line"></span>
+    <span class="hamburger__line"></span>
+    <span class="hamburger__line"></span>
+  </button>
+
+  <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+
+  <!-- ═══ MAIN ═══ -->
+  <main class="main-content" id="mainContent">
+
+    <!-- ── HERO ── -->
+    <section id="overview" class="section section--hero" aria-labelledby="heroName">
+
+      <!-- Gradient background — full bleed, reaches top-left corner -->
+      <div class="hero__blob" aria-hidden="true"></div>
+
+      <!--
+        HEADSHOT POSITION & SIZE:
+        Edit these CSS properties in css/styles.css under .hero__photo-wrap and .hero__photo:
+          top / left / right / bottom   → position on screen
+          width / height                → size of the circular photo
+          object-position               → crop position within circle (e.g. "top center", "center")
+        The photo fills the entire hero section height as a background behind the name.
+      -->
+      <div class="hero__photo-wrap">
+        <img
+          src="assets/images/headshot.jpg"
+          alt="Mohammad Sharif"
+          class="hero__photo"
+          id="heroPhoto"
+          loading="eager"
+        />
+      </div>
+
+      <!-- Name — in front of headshot, bottom-right -->
+      <div class="hero__name-block">
+        <h1 class="hero__name" id="heroName">
+          <span>Mohammad</span>
+          <span>Sharif.</span>
+        </h1>
+      </div>
+
+      <!-- Scroll arrow -->
+      <button class="hero__scroll-arrow" id="heroScrollArrow" aria-label="Scroll to About section">
+        <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+      </button>
+
+      <!-- Footer strip -->
+      <div class="hero__footer">
+        <p class="hero__tagline">Mechanical Engineering Student &mdash; Illinois Institute of Technology</p>
+      </div>
+
+    </section>
+
+    <!-- ── ABOUT ── -->
+    <section id="about" class="section section--about" aria-labelledby="aboutHeading">
+      <div class="section__inner">
+        <header class="section__header">
+          <h2 class="section__title" id="aboutHeading">About Me</h2>
+        </header>
+        <div class="about__grid">
+          <div class="about__bio">
+            <p class="about__text">I'm a mechanical engineering student at Illinois Institute of Technology with a passion for building systems that bridge the physical and computational. My work spans from precision machine elements to bio-inspired robotics, always grounded in rigorous engineering fundamentals.</p>
+            <p class="about__text">Outside the lab, I've served in humanitarian engineering through Project C.U.R.E. and led engineering teams to solve real-world manufacturing challenges during my USG co-op. I believe the best engineers are those who can communicate, collaborate, and ship.</p>
+          </div>
+          <div class="about__interests">
+            <h3 class="about__interests-title">Engineering Interests</h3>
+            <ul class="about__interests-list" role="list">
+              <li class="about__interest-item"><i class="fa-solid fa-robot"></i><span>Robotics &amp; Automation</span></li>
+              <li class="about__interest-item"><i class="fa-solid fa-rocket"></i><span>Aerospace Systems</span></li>
+              <li class="about__interest-item"><i class="fa-solid fa-heart-pulse"></i><span>Medical Devices</span></li>
+              <li class="about__interest-item"><i class="fa-solid fa-gear"></i><span>Mechanical Design</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="about__status">
+          <h3 class="about__status-heading">What I'm Up To</h3>
+          <ul class="about__status-list" role="list">
+            <li class="about__status-item"><span class="about__status-dot"></span>USG CO-OP</li>
+            <li class="about__status-item"><span class="about__status-dot"></span>Building Portfolio</li>
+            <li class="about__status-item"><span class="about__status-dot"></span>Learning Three.js</li>
+            <li class="about__status-item"><span class="about__status-dot"></span>Reading...</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── EXPERIENCE ── -->
+    <section id="experience" class="section section--experience" aria-labelledby="expHeading">
+      <div class="section__inner">
+        <header class="section__header">
+          <h2 class="section__title" id="expHeading">Experience</h2>
+        </header>
+        <div class="timeline">
+
+          <!-- ══ USG ══
+               To change images, update these paths:
+               data-bg-img        → semi-transparent card background image (right side)
+               data-primary-img   → main photo shown when card is expanded
+               data-gallery       → JSON array of gallery image paths
+          -->
+          <article id="usg" class="timeline__item"
+            data-bg-img="assets/images/exp-usg-bg.jpg"
+            data-primary-img="assets/images/exp-usg-team.jpg"
+            data-gallery='["assets/images/exp-usg-1.jpg","assets/images/exp-usg-2.jpg","assets/images/exp-usg-3.jpg"]'
+            aria-labelledby="usgTitle">
+            <div class="timeline__marker" aria-hidden="true"></div>
+            <div class="timeline__card" tabindex="0" role="button" aria-expanded="false" aria-controls="usgBody">
+
+              <!-- Background image — semi-transparent, right side of card -->
+              <div class="timeline__card-bg" aria-hidden="true">
+                <img class="timeline__card-bg-img" src="assets/images/exp-usg-bg.jpg" alt="" onerror="this.parentElement.style.display='none'" />
+              </div>
+
+              <div class="timeline__card-header">
+                <div class="timeline__card-thumb" aria-hidden="true">
+                  <img src="assets/images/exp-usg-thumb.jpg" alt="" class="timeline__card-thumb-img" onerror="this.parentElement.style.display='none'" />
+                </div>
+                <div class="timeline__card-header-text">
+                  <div class="timeline__card-meta">
+                    <span class="timeline__date">Jan 2024 – Aug 2024</span>
+                    <span class="timeline__type">Co-op</span>
+                  </div>
+                  <h3 class="timeline__card-title" id="usgTitle">Project Engineering Co-op</h3>
+                  <p class="timeline__card-org">USG Corporation · Chicago, IL</p>
+                </div>
+                <i class="fa-solid fa-chevron-down timeline__card-chevron" aria-hidden="true"></i>
+              </div>
+
+              <div class="timeline__card-body" id="usgBody" hidden>
+                <!-- Expanded layout: text left, primary image right -->
+                <div class="timeline__card-expanded">
+                  <div class="timeline__card-expanded-text">
+                    <p class="timeline__card-overview">Supported project engineering efforts on manufacturing process improvement initiatives, collaborating with cross-functional teams to identify inefficiencies and implement solutions.</p>
+                    <div class="timeline__tags">
+                      <span class="tag">SolidWorks</span>
+                      <span class="tag">Project Management</span>
+                      <span class="tag">Lean Manufacturing</span>
+                      <span class="tag">AutoCAD</span>
+                    </div>
+                  </div>
+                  <!-- Primary image with gallery button -->
+                  <div class="timeline__card-primary-img-wrap">
+                    <img src="assets/images/exp-usg-team.jpg" alt="USG team" class="timeline__card-primary-img" onerror="this.parentElement.classList.add('is-empty')" />
+                    <button class="gallery-trigger" aria-label="View gallery" data-gallery-id="usg">
+                      <i class="fa-solid fa-images"></i>
+                      <span>Gallery</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- ══ C.U.R.E. ══ -->
+          <article id="cure" class="timeline__item"
+            data-bg-img="assets/images/exp-cure-bg.jpg"
+            data-primary-img="assets/images/exp-cure-team.jpg"
+            data-gallery='["assets/images/exp-cure-1.jpg","assets/images/exp-cure-2.jpg"]'
+            aria-labelledby="cureTitle">
+            <div class="timeline__marker" aria-hidden="true"></div>
+            <div class="timeline__card" tabindex="0" role="button" aria-expanded="false" aria-controls="cureBody">
+
+              <div class="timeline__card-bg" aria-hidden="true">
+                <img class="timeline__card-bg-img" src="assets/images/exp-cure-bg.jpg" alt="" onerror="this.parentElement.style.display='none'" />
+              </div>
+
+              <div class="timeline__card-header">
+                <div class="timeline__card-thumb" aria-hidden="true">
+                  <img src="assets/images/exp-cure-thumb.jpg" alt="" class="timeline__card-thumb-img" onerror="this.parentElement.style.display='none'" />
+                </div>
+                <div class="timeline__card-header-text">
+                  <div class="timeline__card-meta">
+                    <span class="timeline__date">2023 – Present</span>
+                    <span class="timeline__type">Volunteer</span>
+                  </div>
+                  <h3 class="timeline__card-title" id="cureTitle">Engineering Volunteer</h3>
+                  <p class="timeline__card-org">Project C.U.R.E. · Chicago, IL</p>
+                </div>
+                <i class="fa-solid fa-chevron-down timeline__card-chevron" aria-hidden="true"></i>
+              </div>
+
+              <div class="timeline__card-body" id="cureBody" hidden>
+                <div class="timeline__card-expanded">
+                  <div class="timeline__card-expanded-text">
+                    <p class="timeline__card-overview">Sorted, evaluated, and prepared donated medical equipment for distribution to under-resourced hospitals in developing countries.</p>
+                    <div class="timeline__tags">
+                      <span class="tag">Medical Devices</span>
+                      <span class="tag">Humanitarian Engineering</span>
+                      <span class="tag">Equipment Assessment</span>
+                    </div>
+                  </div>
+                  <div class="timeline__card-primary-img-wrap">
+                    <img src="assets/images/exp-cure-team.jpg" alt="C.U.R.E. team" class="timeline__card-primary-img" onerror="this.parentElement.classList.add('is-empty')" />
+                    <button class="gallery-trigger" aria-label="View gallery" data-gallery-id="cure">
+                      <i class="fa-solid fa-images"></i>
+                      <span>Gallery</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- ══ LEADERSHIP ══ -->
+          <article id="leadership" class="timeline__item"
+            data-bg-img="assets/images/exp-leadership-bg.jpg"
+            data-primary-img="assets/images/exp-leadership-team.jpg"
+            data-gallery='["assets/images/exp-leadership-1.jpg","assets/images/exp-leadership-2.jpg"]'
+            aria-labelledby="leaderTitle">
+            <div class="timeline__marker" aria-hidden="true"></div>
+            <div class="timeline__card" tabindex="0" role="button" aria-expanded="false" aria-controls="leaderBody">
+
+              <div class="timeline__card-bg" aria-hidden="true">
+                <img class="timeline__card-bg-img" src="assets/images/exp-leadership-bg.jpg" alt="" onerror="this.parentElement.style.display='none'" />
+              </div>
+
+              <div class="timeline__card-header">
+                <div class="timeline__card-thumb" aria-hidden="true">
+                  <img src="assets/images/exp-leadership-thumb.jpg" alt="" class="timeline__card-thumb-img" onerror="this.parentElement.style.display='none'" />
+                </div>
+                <div class="timeline__card-header-text">
+                  <div class="timeline__card-meta">
+                    <span class="timeline__date">2022 – Present</span>
+                    <span class="timeline__type">Leadership</span>
+                  </div>
+                  <h3 class="timeline__card-title" id="leaderTitle">Engineering Leadership</h3>
+                  <p class="timeline__card-org">Illinois Tech · Chicago, IL</p>
+                </div>
+                <i class="fa-solid fa-chevron-down timeline__card-chevron" aria-hidden="true"></i>
+              </div>
+
+              <div class="timeline__card-body" id="leaderBody" hidden>
+                <div class="timeline__card-expanded">
+                  <div class="timeline__card-expanded-text">
+                    <p class="timeline__card-overview">Active in student organizations and engineering competitions. Led and mentored team members in design challenges, project planning, and technical presentations.</p>
+                    <div class="timeline__tags">
+                      <span class="tag">Team Leadership</span>
+                      <span class="tag">Design Competitions</span>
+                      <span class="tag">Technical Communication</span>
+                    </div>
+                  </div>
+                  <div class="timeline__card-primary-img-wrap">
+                    <img src="assets/images/exp-leadership-team.jpg" alt="Leadership team" class="timeline__card-primary-img" onerror="this.parentElement.classList.add('is-empty')" />
+                    <button class="gallery-trigger" aria-label="View gallery" data-gallery-id="leadership">
+                      <i class="fa-solid fa-images"></i>
+                      <span>Gallery</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article id="vision" class="timeline__item"
+            data-bg-img="assets/images/exp-vision-bg.jpg"
+            data-primary-img="assets/images/exp-vision-team.jpg"
+            data-gallery='["assets/images/exp-vision-1.jpg","assets/images/exp-vision-2.jpg","assets/images/exp-vision-3.jpg"]'
+            aria-labelledby="visionTitle">
+            <div class="timeline__marker" aria-hidden="true"></div>
+            <div class="timeline__card" tabindex="0" role="button" aria-expanded="false" aria-controls="visionBody">
+
+              <!-- Background image — semi-transparent, right side of card -->
+              <div class="timeline__card-bg" aria-hidden="true">
+                <img class="timeline__card-bg-img" src="assets/images/exp-vision-bg.jpg" alt="" onerror="this.parentElement.style.display='none'" />
+              </div>
+
+              <div class="timeline__card-header">
+                <div class="timeline__card-thumb" aria-hidden="true">
+                  <img src="assets/images/exp-vision-thumb.jpg" alt="" class="timeline__card-thumb-img" onerror="this.parentElement.style.display='none'" />
+                </div>
+                <div class="timeline__card-header-text">
+                  <div class="timeline__card-meta">
+                    <span class="timeline__date">Jan 2024 – Aug 2024</span>
+                    <span class="timeline__type">Stem Tutor</span>
+                  </div>
+                  <h3 class="timeline__card-title" id="visionTitle">High School Tutor/Mentor </h3>
+                  <p class="timeline__card-org">Project: VISION! · Chicago, IL</p>
+                </div>
+                <i class="fa-solid fa-chevron-down timeline__card-chevron" aria-hidden="true"></i>
+              </div>
+
+              <div class="timeline__card-body" id="visionBody" hidden>
+                <!-- Expanded layout: text left, primary image right -->
+                <div class="timeline__card-expanded">
+                  <div class="timeline__card-expanded-text">
+                    <p class="timeline__card-overview">Supported project engineering efforts on manufacturing process improvement initiatives, collaborating with cross-functional teams to identify inefficiencies and implement solutions.</p>
+                    <div class="timeline__tags">
+                      <span class="tag">SolidWorks</span>
+                      <span class="tag">Project Management</span>
+                      <span class="tag">Lean Manufacturing</span>
+                      <span class="tag">AutoCAD</span>
+                    </div>
+                  </div>
+                  <!-- Primary image with gallery button -->
+                  <div class="timeline__card-primary-img-wrap">
+                    <img src="assets/images/exp-vision-team.jpg" alt="USG team" class="timeline__card-primary-img" onerror="this.parentElement.classList.add('is-empty')" />
+                    <button class="gallery-trigger" aria-label="View gallery" data-gallery-id="vision">
+                      <i class="fa-solid fa-images"></i>
+                      <span>Gallery</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PROJECTS — centered like resources ── -->
+    <section id="projects" class="section section--projects" aria-labelledby="projectsHeading">
+      <div class="section__inner">
+        <header class="section__header">
+          <h2 class="section__title" id="projectsHeading">Projects</h2>
+        </header>
+        <div class="projects__grid">
+          <a href="projects/tomato-slicer.html" class="project-card">
+            <div class="project-card__image-wrap">
+              <img src="assets/images/tomato-slicer.jpg" alt="Tomato slicer" class="project-card__image" loading="lazy" />
+              <div class="project-card__overlay"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">Tomato Slicer</h3>
+              <p class="project-card__desc">Precision food-processing mechanism designed for repeatable, uniform slicing.</p>
+              <div class="project-card__tags"><span class="tag">SolidWorks</span><span class="tag">Mechanism Design</span><span class="tag">Prototyping</span></div>
+            </div>
+          </a>
+          <a href="projects/foam-chair.html" class="project-card">
+            <div class="project-card__image-wrap">
+              <img src="assets/images/foam-chair.jpg" alt="Foam chair" class="project-card__image" loading="lazy" />
+              <div class="project-card__overlay"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">Sustainable Foam Chair</h3>
+              <p class="project-card__desc">Structurally optimized seating designed with sustainability constraints.</p>
+              <div class="project-card__tags"><span class="tag">Structural Analysis</span><span class="tag">Materials</span><span class="tag">Sustainability</span></div>
+            </div>
+          </a>
+          <a href="projects/quadruped.html" class="project-card">
+            <div class="project-card__image-wrap">
+              <img src="assets/images/quadruped.jpg" alt="Quadruped robot" class="project-card__image" loading="lazy" />
+              <div class="project-card__overlay"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">Bio-Inspired Quadruped Robot</h3>
+              <p class="project-card__desc">A four-legged walking robot modeled on biological locomotion principles.</p>
+              <div class="project-card__tags"><span class="tag">Robotics</span><span class="tag">Python</span><span class="tag">3D Printing</span></div>
+            </div>
+          </a>
+          <a href="projects/senior-design.html" class="project-card project-card--upcoming">
+            <div class="project-card__image-wrap project-card__image-wrap--placeholder">
+              <i class="fa-solid fa-clock-rotate-left project-card__placeholder-icon"></i>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">Future Senior Design <span class="badge badge--wip">In Progress</span></h3>
+              <p class="project-card__desc">Senior capstone project — details to be announced.</p>
+              <div class="project-card__tags"><span class="tag tag--muted">TBD</span></div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── RESOURCES ── -->
+    <section id="resources" class="section section--resources" aria-labelledby="resourcesHeading">
+      <div class="section__inner">
+        <header class="section__header">
+          <h2 class="section__title" id="resourcesHeading">Resources</h2>
+        </header>
+        <div class="resources__grid">
+          <a href="assets/pdf/resume.pdf" download class="resource-card"><i class="fa-solid fa-file-lines resource-card__icon"></i><div class="resource-card__info"><h3 class="resource-card__title">Resume</h3><p class="resource-card__meta">PDF · Updated 2024</p></div><i class="fa-solid fa-download resource-card__action"></i></a>
+          <div class="resource-card resource-card--upcoming"><i class="fa-solid fa-certificate resource-card__icon"></i><div class="resource-card__info"><h3 class="resource-card__title">FE Certificate</h3><p class="resource-card__meta">Coming soon</p></div><span class="badge badge--wip">Upcoming</span></div>
+          <div class="resource-card resource-card--upcoming"><i class="fa-solid fa-award resource-card__icon"></i><div class="resource-card__info"><h3 class="resource-card__title">CSWP Certificate</h3><p class="resource-card__meta">Coming soon</p></div><span class="badge badge--wip">Upcoming</span></div>
+          <a href="assets/pdf/portfolio.pdf" download class="resource-card"><i class="fa-solid fa-book resource-card__icon"></i><div class="resource-card__info"><h3 class="resource-card__title">Portfolio PDF</h3><p class="resource-card__meta">PDF · Full project gallery</p></div><i class="fa-solid fa-download resource-card__action"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SKILLS (section 06) ── -->
+    <section id="skills" class="section section--skills" aria-labelledby="skillsHeading">
+      <div class="section__inner">
+        <header class="section__header">
+          <h2 class="section__title" id="skillsHeading">Skills</h2>
+        </header>
+        <div class="skills__grid">
+          <div class="skill-card"><div class="skill-card__icon-wrap"><i class="fa-solid fa-drafting-compass"></i></div><h3 class="skill-card__title">CAD</h3><ul class="skill-card__list"><li>SolidWorks</li><li>AutoCAD</li><li>Fusion 360</li><li>CATIA</li></ul></div>
+          <div class="skill-card"><div class="skill-card__icon-wrap"><i class="fa-solid fa-code"></i></div><h3 class="skill-card__title">Programming</h3><ul class="skill-card__list"><li>Python</li><li>MATLAB</li><li>C++</li><li>JavaScript</li></ul></div>
+          <div class="skill-card"><div class="skill-card__icon-wrap"><i class="fa-solid fa-calculator"></i></div><h3 class="skill-card__title">Engineering</h3><ul class="skill-card__list"><li>FEA / FEM</li><li>Thermodynamics</li><li>Fluid Dynamics</li><li>Machine Design</li></ul></div>
+          <div class="skill-card"><div class="skill-card__icon-wrap"><i class="fa-solid fa-screwdriver-wrench"></i></div><h3 class="skill-card__title">Manufacturing</h3><ul class="skill-card__list"><li>3D Printing</li><li>CNC Milling</li><li>Laser Cutting</li><li>Welding</li></ul></div>
+          <div class="skill-card"><div class="skill-card__icon-wrap"><i class="fa-solid fa-laptop-code"></i></div><h3 class="skill-card__title">Software</h3><ul class="skill-card__list"><li>ANSYS</li><li>LabVIEW</li><li>MS Project</li><li>Git</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CONTACT (section 07) ── -->
+    <section id="contact" class="section section--contact" aria-labelledby="contactHeading">
+      <div class="section__inner">
+        <header class="section__header">
+          <h2 class="section__title" id="contactHeading">Contact</h2>
+        </header>
+        <div class="contact__grid">
+          <div class="contact__card">
+            <p class="contact__intro">I'm actively looking for internship and co-op opportunities in mechanical engineering. Whether you have a question, a project, or just want to connect — feel free to reach out.</p>
+            <ul class="contact__links" role="list">
+              <li><a href="mailto:msharif@hawk.iit.edu" class="contact__link"><i class="fa-solid fa-envelope"></i>msharif@hawk.iit.edu</a></li>
+              <li><a href="https://github.com" target="_blank" rel="noopener noreferrer" class="contact__link"><i class="fa-brands fa-github"></i>github.com/msharif</a></li>
+              <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="contact__link"><i class="fa-brands fa-linkedin-in"></i>linkedin.com/in/msharif</a></li>
+            </ul>
+          </div>
+          <form class="contact__form" id="contactForm" novalidate>
+            <div class="form-group"><label for="contactName" class="form-label">Name</label><input type="text" id="contactName" name="name" class="form-input" placeholder="Your name" autocomplete="name" required /></div>
+            <div class="form-group"><label for="contactEmail" class="form-label">Email</label><input type="email" id="contactEmail" name="email" class="form-input" placeholder="your@email.com" autocomplete="email" required /></div>
+            <div class="form-group"><label for="contactMessage" class="form-label">Message</label><textarea id="contactMessage" name="message" class="form-input form-textarea" placeholder="What would you like to discuss?" rows="5" required></textarea></div>
+            <button type="submit" class="btn btn--primary btn--full"><i class="fa-solid fa-paper-plane"></i>Send Message</button>
+            <p class="contact__form-note" role="status" id="formStatus" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <p class="site-footer__text">&copy; 2026 Mohammad Sharif. All rights reserved.</p>
+    </footer>
+
+  </main>
+
+  <!-- ═══ LIGHTBOX ═══ -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image gallery" hidden>
+    <div class="lightbox__backdrop" id="lightboxBackdrop"></div>
+    <div class="lightbox__inner">
+      <button class="lightbox__close" id="lightboxClose" aria-label="Close gallery">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <button class="lightbox__arrow lightbox__arrow--prev" id="lightboxPrev" aria-label="Previous image">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <div class="lightbox__stage">
+        <img class="lightbox__img" id="lightboxImg" src="" alt="Gallery image" />
+      </div>
+      <button class="lightbox__arrow lightbox__arrow--next" id="lightboxNext" aria-label="Next image">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+      <div class="lightbox__footer">
+        <span class="lightbox__counter" id="lightboxCounter">1 / 1</span>
+        <div class="lightbox__thumbs" id="lightboxThumbs"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/theme.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/gallery.js"></script>
+</body>
+</html>
