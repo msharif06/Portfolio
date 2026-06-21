@@ -266,7 +266,7 @@ body.theme-dark .theme-toggle__icon--light { opacity: 0; }
 
 /* ── HERO ─────────────────────────────────────────────────────── */
 .section--hero {
-  height: 100vh; 
+  height: 100vh;
   overflow: hidden;
   position: relative;
 }
@@ -306,7 +306,8 @@ body.theme-dark .theme-toggle__icon--light { opacity: 0; }
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
+    inset: 0;
+    position: absolute;
 }
 
 /*
