@@ -68,25 +68,31 @@
     });
   }
 
-  /* Always boot light */
+  const THEME_KEY = 'portfolio-theme';
+
   function applyTheme(theme) {
     document.body.classList.toggle('theme-dark',  theme==='dark');
     document.body.classList.toggle('theme-light', theme==='light');
-    try { localStorage.setItem('portfolio-theme', theme); } catch {}
+    try { localStorage.setItem(THEME_KEY, theme); } catch {}
     const btn = document.getElementById('themeToggle');
     if (btn) btn.setAttribute('aria-checked', theme==='dark'?'true':'false');
+    // Update iOS status bar color
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.content = theme === 'dark' ? '#0A0A0F' : '#F0F0EC';
   }
 
   function toggleTheme() {
     applyTheme(document.body.classList.contains('theme-dark') ? 'light' : 'dark');
   }
 
+  // Always boot light
   applyPalette(null);
-  applyTheme('light'); // always light on boot
+  applyTheme('light');
 
   document.addEventListener('DOMContentLoaded', () => {
     const btn = document.getElementById('themeToggle');
     if (btn) btn.addEventListener('click', toggleTheme);
+
     const img = document.getElementById('heroPhoto');
     if (!img) return;
     const run = async () => { applyPalette(await extractPalette(img)); };
