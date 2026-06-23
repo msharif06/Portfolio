@@ -1,35 +1,49 @@
 /* ═══════════════════════════════════════════════════════════════════
    animations.css
 ═══════════════════════════════════════════════════════════════════ */
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
 
-.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.55s cubic-bezier(0,0,0.2,1), transform 0.55s cubic-bezier(0,0,0.2,1); }
+/* ── Reveal ───────────────────────────────────────────────────── */
+.reveal {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.55s cubic-bezier(0,0,0.2,1), transform 0.55s cubic-bezier(0,0,0.2,1);
+}
 .reveal.is-revealed { opacity: 1; transform: none; }
-.reveal--left { opacity: 0; transform: translateX(-20px); transition: opacity 0.55s cubic-bezier(0,0,0.2,1), transform 0.55s cubic-bezier(0,0,0.2,1); }
+
+.reveal--left {
+  opacity: 0; transform: translateX(-20px);
+  transition: opacity 0.55s cubic-bezier(0,0,0.2,1), transform 0.55s cubic-bezier(0,0,0.2,1);
+}
 .reveal--left.is-revealed { opacity: 1; transform: none; }
 
-.reveal-group > * { opacity: 0; transform: translateY(16px); transition: opacity 0.45s cubic-bezier(0,0,0.2,1), transform 0.45s cubic-bezier(0,0,0.2,1); }
-.reveal-group.is-revealed > *:nth-child(1) { opacity:1;transform:none;transition-delay:0ms; }
-.reveal-group.is-revealed > *:nth-child(2) { opacity:1;transform:none;transition-delay:70ms; }
-.reveal-group.is-revealed > *:nth-child(3) { opacity:1;transform:none;transition-delay:140ms; }
-.reveal-group.is-revealed > *:nth-child(4) { opacity:1;transform:none;transition-delay:210ms; }
-.reveal-group.is-revealed > *:nth-child(5) { opacity:1;transform:none;transition-delay:280ms; }
-.reveal-group.is-revealed > *:nth-child(6) { opacity:1;transform:none;transition-delay:350ms; }
+.reveal-group > * {
+  opacity: 0; transform: translateY(16px);
+  transition: opacity 0.45s cubic-bezier(0,0,0.2,1), transform 0.45s cubic-bezier(0,0,0.2,1);
+}
+.reveal-group.is-revealed > *:nth-child(1) { opacity:1; transform:none; transition-delay:0ms; }
+.reveal-group.is-revealed > *:nth-child(2) { opacity:1; transform:none; transition-delay:70ms; }
+.reveal-group.is-revealed > *:nth-child(3) { opacity:1; transform:none; transition-delay:140ms; }
+.reveal-group.is-revealed > *:nth-child(4) { opacity:1; transform:none; transition-delay:210ms; }
+.reveal-group.is-revealed > *:nth-child(5) { opacity:1; transform:none; transition-delay:280ms; }
+.reveal-group.is-revealed > *:nth-child(6) { opacity:1; transform:none; transition-delay:350ms; }
 
-@keyframes fade-up   { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:none} }
-@keyframes blob-in   { from{opacity:0;transform:scaleX(0.95)} to{opacity:1;transform:none} }
-@keyframes photo-in  { from{opacity:0;transform:scale(0.93) translateY(10px)} to{opacity:1;transform:none} }
-@keyframes sidebar-in{ from{opacity:0;transform:translateX(-10px)} to{opacity:1;transform:none} }
+/* ── Hero entrance ────────────────────────────────────────────── */
+@keyframes fade-up   { from { opacity:0; transform:translateY(18px) } to { opacity:1; transform:none } }
+@keyframes blob-in   { from { opacity:0; transform:scaleX(0.95) } to { opacity:1; transform:none } }
+@keyframes photo-in  { from { opacity:0; transform:scale(0.97) } to { opacity:1; transform:none } }
+@keyframes sidebar-in{ from { opacity:0; transform:translateX(-10px) } to { opacity:1; transform:none } }
 
-.hero__blob        { animation: blob-in   0.9s cubic-bezier(0,0,0.2,1) 0.05s both; }
-.hero__photo-wrap  { animation: photo-in  0.85s cubic-bezier(0,0,0.2,1) 0.15s both; }
-.hero__name-block  { animation: fade-up   0.7s cubic-bezier(0,0,0.2,1) 0.45s both; }
-.hero__footer      { animation: fade-up   0.6s cubic-bezier(0,0,0.2,1) 0.55s both; }
-.hero__scroll-arrow{ animation: fade-up   0.5s cubic-bezier(0,0,0.2,1) 0.7s both; }
+.hero__blob        { animation: blob-in  0.9s cubic-bezier(0,0,0.2,1) 0.05s both; }
+.hero__photo-wrap  { animation: photo-in 0.85s cubic-bezier(0,0,0.2,1) 0.1s both; }
+.hero__name-block  { animation: fade-up  0.7s cubic-bezier(0,0,0.2,1) 0.4s both; }
+.hero__footer      { animation: fade-up  0.6s cubic-bezier(0,0,0.2,1) 0.5s both; }
+.hero__scroll-arrow{ animation: fade-up  0.5s cubic-bezier(0,0,0.2,1) 0.65s both; }
 .sidebar           { animation: sidebar-in 0.5s cubic-bezier(0,0,0.2,1) 0.05s both; }
 
+/* ── Section dividers ─────────────────────────────────────────── */
 .section--about::before,
 .section--experience::before,
 .section--projects::before,
