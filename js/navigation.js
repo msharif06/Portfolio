@@ -1,9 +1,11 @@
 /**
  * navigation.js
- * 1. Sidebar collapse/expand (desktop, persisted)
- * 2. Auto-collapse via CSS at 900–1200px
- * 3. NO sidebar on mobile (≤900px) — hamburger drawer only
- * 4. Dropdowns, smooth scroll, active highlights, scroll progress
+ *
+ * Sidebar responsive behavior:
+ * - >1200px: expanded or collapsed per user preference + toggle arrow
+ * - 901–1200px: auto-collapsed via CSS, toggle arrow still works to expand
+ * - ≤900px: PERMANENTLY collapsed, no toggle, no hamburger, no drawer
+ *           JS is completely locked out from opening the sidebar here.
  */
 'use strict';
 
@@ -12,14 +14,12 @@
   const body          = document.body;
   const sidebar       = document.getElementById('sidebar');
   const sidebarToggle = document.getElementById('sidebarToggle');
-  const hamburger     = document.getElementById('hamburger');
-  const overlay       = document.getElementById('sidebarOverlay');
   const scrollBar     = document.getElementById('scrollProgress');
 
-  const SIDEBAR_KEY = 'portfolio-sidebar';
-  const MOBILE_BP   = 900;
+  const SIDEBAR_KEY    = 'portfolio-sidebar';
+  const LOCKED_BP      = 900;   // below this: sidebar permanently collapsed, no JS interaction
 
-  const isMobile = () => window.innerWidth <= MOBILE_BP;
+  const isLocked = () => window.innerWidth <= LOCKED_BP;
 
   function getSaved() {
     try { return localStorage.getItem(SIDEBAR_KEY) || 'expanded'; } catch { return 'expanded'; }
@@ -33,8 +33,9 @@
     if (sidebarToggle) sidebarToggle.setAttribute('aria-expanded', state === 'expanded');
   }
 
-  /* Desktop collapse toggle */
+  /* Desktop collapse/expand toggle — locked out on mobile */
   function toggleDesktopSidebar() {
+    if (isLocked()) return;  /* ← key guard: no-op below 900px */
     const next = body.getAttribute('data-sidebar') === 'expanded' ? 'collapsed' : 'expanded';
     applySidebarState(next);
     saveSidebarState(next);
@@ -43,65 +44,28 @@
 
   if (sidebarToggle) sidebarToggle.addEventListener('click', toggleDesktopSidebar);
 
-  /* On resize: restore saved state on wide desktop, hide hamburger on desktop */
+  /* Resize handler */
   function handleResize() {
-    if (isMobile()) {
-      // Mobile: sidebar always off-screen, hamburger visible (CSS handles this)
+    if (isLocked()) {
+      /* Force collapsed, no saving, no interaction */
+      body.setAttribute('data-sidebar', 'collapsed');
       return;
     }
-    // Desktop: restore saved preference (CSS media query handles auto-collapse at 900–1200px)
+    /* Desktop: restore saved preference */
     applySidebarState(getSaved());
     updateActiveHighlights();
   }
 
   window.addEventListener('resize', handleResize, { passive: true });
-  applySidebarState(getSaved());
 
-  /* Mobile drawer */
-  function openDrawer() {
-    if (!sidebar) return;
-    sidebar.classList.add('is-mobile-open');
-    if (overlay) { overlay.classList.add('is-active'); overlay.setAttribute('aria-hidden', 'false'); }
-    if (hamburger) hamburger.setAttribute('aria-expanded', 'true');
-    body.style.overflow = 'hidden';
-    const lines = hamburger ? hamburger.querySelectorAll('.hamburger__line') : [];
-    if (lines[0]) lines[0].style.transform = 'translateY(7px) rotate(45deg)';
-    if (lines[1]) lines[1].style.opacity   = '0';
-    if (lines[2]) lines[2].style.transform = 'translateY(-7px) rotate(-45deg)';
+  /* Initial state */
+  if (isLocked()) {
+    body.setAttribute('data-sidebar', 'collapsed');
+  } else {
+    applySidebarState(getSaved());
   }
 
-  function closeDrawer() {
-    if (!sidebar) return;
-    sidebar.classList.remove('is-mobile-open');
-    if (overlay) { overlay.classList.remove('is-active'); overlay.setAttribute('aria-hidden', 'true'); }
-    if (hamburger) hamburger.setAttribute('aria-expanded', 'false');
-    body.style.overflow = '';
-    const lines = hamburger ? hamburger.querySelectorAll('.hamburger__line') : [];
-    lines.forEach(l => { l.style.transform = ''; l.style.opacity = ''; });
-  }
-
-  if (hamburger) hamburger.addEventListener('click', () => {
-    sidebar && sidebar.classList.contains('is-mobile-open') ? closeDrawer() : openDrawer();
-  });
-  if (overlay) overlay.addEventListener('click', closeDrawer);
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
-
-  /* Dropdowns */
-  sidebar && sidebar.querySelectorAll('.sidebar__nav-link--dropdown').forEach(trigger => {
-    const menu = document.getElementById(trigger.getAttribute('aria-controls'));
-    if (!menu) return;
-    trigger.addEventListener('click', () => {
-      const willOpen = trigger.getAttribute('aria-expanded') !== 'true';
-      sidebar.querySelectorAll('.sidebar__nav-link--dropdown').forEach(t => {
-        t.setAttribute('aria-expanded', 'false');
-        const m = document.getElementById(t.getAttribute('aria-controls'));
-        if (m) m.classList.remove('is-open');
-      });
-      if (willOpen) { trigger.setAttribute('aria-expanded', 'true'); menu.classList.add('is-open'); }
-    });
-  });
-
-  /* Smooth scroll */
+  /* Smooth scroll (works on all viewport sizes) */
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', e => {
       const href = link.getAttribute('href');
@@ -110,7 +74,6 @@
       e.preventDefault();
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       history.replaceState(null, '', href);
-      if (isMobile()) closeDrawer();
     });
   });
 
@@ -136,13 +99,35 @@
     });
   }
 
+  /* Dropdowns (Projects) */
+  sidebar && sidebar.querySelectorAll('.sidebar__nav-link--dropdown').forEach(trigger => {
+    const menu = document.getElementById(trigger.getAttribute('aria-controls'));
+    if (!menu) return;
+    trigger.addEventListener('click', () => {
+      if (isLocked()) return;  /* no dropdowns when permanently collapsed */
+      const willOpen = trigger.getAttribute('aria-expanded') !== 'true';
+      sidebar.querySelectorAll('.sidebar__nav-link--dropdown').forEach(t => {
+        t.setAttribute('aria-expanded', 'false');
+        const m = document.getElementById(t.getAttribute('aria-controls'));
+        if (m) m.classList.remove('is-open');
+      });
+      if (willOpen) { trigger.setAttribute('aria-expanded', 'true'); menu.classList.add('is-open'); }
+    });
+  });
+
   /* Active section highlights */
   const SECTION_NAV_MAP = {
-    'overview': 'overview', 'about': 'about',
-    'experience': 'experience', 'usg': 'experience', 'cure': 'experience',
-    'leadership': 'experience', 'vision': 'experience',
-    'projects': 'projects', 'resources': 'resources',
-    'skills': 'skills', 'contact': 'contact',
+    'overview':   'about',      /* overview scrolls to about now */
+    'about':      'about',
+    'experience': 'experience',
+    'usg':        'experience',
+    'cure':       'experience',
+    'leadership': 'experience',
+    'vision':     'experience',
+    'projects':   'projects',
+    'resources':  'resources',
+    'skills':     'skills',
+    'contact':    'contact',
   };
 
   const allNavLinks = sidebar
@@ -193,17 +178,19 @@
     if (scrollBar) scrollBar.style.width = Math.min(pct, 100) + '%';
     document.documentElement.style.setProperty('--scroll-ratio', Math.min(window.scrollY / window.innerHeight, 1).toFixed(3));
 
-    /* Parallax on experience/projects image panels */
-    document.querySelectorAll('.section__col-img').forEach(img => {
-      const wrap = img.closest('.section__col--image');
-      if (!wrap) return;
-      const rect = wrap.getBoundingClientRect();
-      const ratio = (rect.top + rect.height / 2) / window.innerHeight;
-      const offset = (0.5 - ratio) * 40;
-      img.style.setProperty('--parallax-offset', `${offset}px`);
-    });
+    /* Parallax on section image panels */
+    if (!isLocked()) {
+      document.querySelectorAll('.section__col-img').forEach(img => {
+        const wrap = img.closest('.section__col--image');
+        if (!wrap) return;
+        const rect = wrap.getBoundingClientRect();
+        const ratio = (rect.top + rect.height / 2) / window.innerHeight;
+        const offset = (0.5 - ratio) * 40;
+        img.style.setProperty('--parallax-offset', `${offset}px`);
+      });
+    }
   }, { passive: true });
 
-  window.NavigationModule = { closeDrawer };
+  window.NavigationModule = {};
 
 })();
