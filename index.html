@@ -6,6 +6,14 @@
   <meta name="theme-color" content="#F0F0EC" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <!--
+    FAVICON / TAB ICON:
+    Place your icon file at: assets/images/site-icon.png  (512x512 recommended)
+    It will show on browser tabs, bookmarks, and iOS home screen.
+    Supports .png, .ico, .svg
+  -->
+  <link rel="icon" type="image/png" href="assets/images/site-icon.png" />
+  <link rel="apple-touch-icon" href="assets/images/site-icon.png" />
   <meta name="description" content="Mechanical Engineering Student Portfolio — Illinois Institute of Technology" />
   <title>Mohammad Sharif — Mechanical Engineering</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -25,29 +33,35 @@
       <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
     </button>
 
+    <!--
+      SIDEBAR LOGO / PAGE ICON:
+      Place your icon at: assets/images/site-icon.png
+      Same image used for the browser tab favicon above.
+      It shows centered in the sidebar. Hidden when sidebar collapses.
+    -->
+    <div class="sidebar__logo">
+      <a href="#overview" aria-label="Back to top">
+        <img src="assets/images/site-icon.png" alt="Mohammad Sharif" class="sidebar__logo-img" onerror="this.parentElement.style.display='none'" />
+      </a>
+    </div>
+
     <nav class="sidebar__nav" aria-label="Sections">
       <ul class="sidebar__nav-list" role="list">
         <li class="sidebar__nav-item">
-          <a href="#overview" class="sidebar__nav-link" data-section="overview">
-            <span class="sidebar__nav-num">01</span>
-            <span class="sidebar__nav-label">Overview</span>
-          </a>
-        </li>
-        <li class="sidebar__nav-item">
           <a href="#about" class="sidebar__nav-link" data-section="about">
-            <span class="sidebar__nav-num">02</span>
+            <span class="sidebar__nav-num">01</span>
             <span class="sidebar__nav-label">About Me</span>
           </a>
         </li>
         <li class="sidebar__nav-item">
           <a href="#experience" class="sidebar__nav-link" data-section="experience">
-            <span class="sidebar__nav-num">03</span>
+            <span class="sidebar__nav-num">02</span>
             <span class="sidebar__nav-label">Experience</span>
           </a>
         </li>
         <li class="sidebar__nav-item sidebar__nav-item--dropdown">
           <button class="sidebar__nav-link sidebar__nav-link--dropdown" data-section="projects" aria-expanded="false" aria-controls="projMenu">
-            <span class="sidebar__nav-num">04</span>
+            <span class="sidebar__nav-num">03</span>
             <span class="sidebar__nav-label">Projects</span>
             <i class="fa-solid fa-chevron-down sidebar__nav-chevron" aria-hidden="true"></i>
           </button>
@@ -60,21 +74,19 @@
         </li>
         <li class="sidebar__nav-item">
           <a href="#resources" class="sidebar__nav-link" data-section="resources">
-            <span class="sidebar__nav-num">05</span>
+            <span class="sidebar__nav-num">04</span>
             <span class="sidebar__nav-label">Resources</span>
           </a>
         </li>
-        <!-- Skills is now 06 -->
         <li class="sidebar__nav-item">
           <a href="#skills" class="sidebar__nav-link" data-section="skills">
-            <span class="sidebar__nav-num">06</span>
+            <span class="sidebar__nav-num">05</span>
             <span class="sidebar__nav-label">Skills</span>
           </a>
         </li>
-        <!-- Contact is now 07 -->
         <li class="sidebar__nav-item">
           <a href="#contact" class="sidebar__nav-link" data-section="contact">
-            <span class="sidebar__nav-num">07</span>
+            <span class="sidebar__nav-num">06</span>
             <span class="sidebar__nav-label">Contact</span>
           </a>
         </li>
@@ -131,7 +143,6 @@
     <section id="overview" class="section section--hero" aria-labelledby="heroName">
 
       <!-- Gradient background — full bleed, reaches top-left corner -->
-      <div class="hero__blob" aria-hidden="true"></div>
 
       <!--
         HEADSHOT POSITION & SIZE:
@@ -570,7 +581,7 @@
               <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="contact__link"><i class="fa-brands fa-linkedin-in"></i>linkedin.com/in/msharif</a></li>
             </ul>
           </div>
-          <form class="contact__form" id="contactForm" novalidate>
+          <form class="contact__form" id="contactForm" novalidate data-email="mohashah1213@gmail.com">
             <div class="form-group"><label for="contactName" class="form-label">Name</label><input type="text" id="contactName" name="name" class="form-input" placeholder="Your name" autocomplete="name" required /></div>
             <div class="form-group"><label for="contactEmail" class="form-label">Email</label><input type="email" id="contactEmail" name="email" class="form-input" placeholder="your@email.com" autocomplete="email" required /></div>
             <div class="form-group"><label for="contactMessage" class="form-label">Message</label><textarea id="contactMessage" name="message" class="form-input form-textarea" placeholder="What would you like to discuss?" rows="5" required></textarea></div>
