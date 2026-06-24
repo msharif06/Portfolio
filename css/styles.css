@@ -110,8 +110,12 @@ input, textarea, select { font: inherit; }
   display: flex; flex-direction: column;
   z-index: 100;
   transition: width var(--sidebar-transition), background var(--dur-slow), border-color var(--dur-slow);
-  overflow: hidden;
+  overflow: hidden; /* clips nav content */
 }
+/* Inner nav clips content; toggle button uses absolute positioning outside */
+.sidebar__nav,
+.sidebar__bottom,
+.sidebar__progress-track { overflow: hidden; }
 [data-sidebar="collapsed"] .sidebar { width: var(--sidebar-width-collapsed); }
 
 .main-content {
@@ -142,6 +146,28 @@ input, textarea, select { font: inherit; }
 body.theme-dark .sidebar__toggle { background: #fff !important; border-color: #fff !important; color: #111 !important; }
 .sidebar__toggle i { transition: transform var(--sidebar-transition); color: inherit; }
 [data-sidebar="collapsed"] .sidebar__toggle i { transform: rotate(180deg); }
+
+
+/* ── SIDEBAR LOGO ─────────────────────────────────────────────── */
+/* Place icon at: assets/images/site-icon.png                    */
+.sidebar__logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem 1rem 0.75rem;
+  flex-shrink: 0;
+}
+.sidebar__logo a { display: flex; align-items: center; justify-content: center; }
+.sidebar__logo-img {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  transition: opacity var(--dur-base);
+}
+.sidebar__logo-img:hover { opacity: 0.8; }
+/* Hide logo when sidebar is collapsed */
+[data-sidebar="collapsed"] .sidebar__logo { display: none; }
 
 /* ── SIDEBAR NAV ──────────────────────────────────────────────── */
 .sidebar__nav { flex: 1; padding: 2.5rem 0 1rem; overflow-y: auto; overflow-x: hidden; scrollbar-width: none; }
@@ -242,6 +268,7 @@ body.theme-dark .theme-toggle__icon--light { opacity: 0; }
 
 /* ── HAMBURGER — mobile only ──────────────────────────────────── */
 .hamburger {
+  /* Hidden on desktop by default — only shown via media query on mobile */
   display: none;
   position: fixed; top: 0.875rem; left: 0.875rem; z-index: 200;
   width: 40px; height: 40px; border-radius: var(--radius-md);
@@ -250,6 +277,7 @@ body.theme-dark .theme-toggle__icon--light { opacity: 0; }
   gap: 5px; padding: 0 10px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.15);
   -webkit-tap-highlight-color: transparent;
+  pointer-events: none; /* belt-and-suspenders: no accidental clicks when hidden */
 }
 .hamburger__line { display: block; height: 1.5px; width: 100%; background: var(--color-text-secondary); border-radius: 2px; transition: transform var(--dur-base), opacity var(--dur-base); }
 .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 90; backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); opacity: 0; pointer-events: none; transition: opacity 0.3s; }
@@ -270,12 +298,7 @@ body.theme-dark .theme-toggle__icon--light { opacity: 0; }
   display: flex; flex-direction: column;
 }
 
-.hero__blob {
-  position: absolute; top: 0; left: 0; width: 82%; height: 100%;
-  background: radial-gradient(ellipse at 25% 38%, #F5C97A 0%, #E8955A 18%, #C8693A 40%, #A04828 60%, #6B2E18 78%, #3A1508 100%);
-  mask-image: linear-gradient(to right, black 50%, transparent 88%);
-  -webkit-mask-image: linear-gradient(to right, black 50%, transparent 88%);
-}
+/* hero__blob removed */
 
 /* Headshot fills entire hero */
 .hero__photo-wrap { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; }
@@ -391,7 +414,7 @@ body.theme-light .section__col-img-wrap::before {
 .section__col-img {
   width: 100%; height: 100%;
   object-fit: cover; object-position: center;
-  opacity: 0.45;
+  opacity: 1.0;
   display: block;
   /* Parallax offset driven by JS */
   transform: translateY(var(--parallax-offset, 0px)) scale(1.08);
