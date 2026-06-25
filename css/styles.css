@@ -128,8 +128,8 @@ input, textarea, select { font: inherit; }
 /* ── SIDEBAR TOGGLE: centered on border, permanently black ────── */
 .sidebar__toggle {
   position: absolute;
-  top: 50%;
-  right: -16px;
+  top: 10%;
+  right: -10px;
   transform: translateY(-50%);
   width: 32px; height: 32px;
   border-radius: var(--radius-full);
