@@ -157,13 +157,17 @@ body.theme-dark .sidebar__toggle { background: #fff !important; border-color: #f
   padding: 1.5rem 1rem 0.75rem;
   flex-shrink: 0;
 }
-.sidebar__logo a { display: flex; align-items: center; justify-content: center; }
-.sidebar__logo-img {
-  width: 56px;
-  height: 56px;
-  border-radius: var(--radius-md);
-  object-fit: cover;
-  transition: opacity var(--dur-base);
+.sidebar__logo-name {
+  font-family: var(--font-display);   /* Space Grotesk — same as hero */
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  color: var(--sidebar-accent);       /* follows the universal accent color */
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  transition: opacity var(--dur-fast);
 }
 .sidebar__logo-img:hover { opacity: 0.8; }
 /* Hide logo when sidebar is collapsed */
