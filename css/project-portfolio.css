@@ -1,0 +1,204 @@
+/* ═══════════════════════════════════════════════════════════════════
+   project-portfolio.css
+   Custom styles for the portfolio project page only.
+   Before/After comparison layout + section overrides.
+═══════════════════════════════════════════════════════════════════ */
+
+/* ── Override: no gallery column — full-width sections ─────────── */
+.portfolio-sections {
+  max-width: 760px;
+  margin: 3rem auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2.75rem;
+  padding-bottom: 1rem;
+}
+
+.portfolio-sections .project-section {
+  border-top: 1px solid var(--color-border);
+  padding-top: 2rem;
+}
+.portfolio-sections .project-section:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+/* ── Before / After comparison ────────────────────────────────── */
+.portfolio-compare {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 0;
+  align-items: stretch;
+  margin: 2.5rem 0 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-2);
+  min-height: 380px;
+}
+
+/* Image panels */
+.portfolio-compare__panel {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.portfolio-compare__img-wrap {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background: var(--color-surface-3);
+  min-height: 320px;
+}
+
+.portfolio-compare__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  transition: transform 0.45s cubic-bezier(0,0,0.2,1);
+}
+
+.portfolio-compare__panel:hover .portfolio-compare__img {
+  transform: scale(1.03);
+}
+
+/* Empty state when no image placed yet */
+.portfolio-compare__img-wrap--empty .portfolio-compare__img { display: none; }
+.portfolio-compare__empty-state {
+  display: none;
+  position: absolute; inset: 0;
+  flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 0.75rem;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-align: center;
+  padding: 1.5rem;
+}
+.portfolio-compare__empty-state i { font-size: 2rem; color: var(--accent); opacity: 0.4; }
+.portfolio-compare__img-wrap--empty .portfolio-compare__empty-state { display: flex; }
+
+/* Label strip at top of each panel */
+.portfolio-compare__label {
+  padding: 0.75rem 1rem;
+  background: var(--color-surface-2);
+  border-bottom: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.portfolio-compare__badge {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 3px 0.625rem;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+}
+
+.portfolio-compare__badge--before {
+  background: rgba(144, 144, 152, 0.15);
+  border: 1px solid var(--color-border-light);
+  color: var(--color-text-muted);
+}
+
+.portfolio-compare__badge--after {
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+
+/* Caption below image */
+.portfolio-compare__caption {
+  padding: 0.625rem 1rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  border-top: 1px solid var(--color-border);
+  background: var(--color-surface-2);
+  flex-shrink: 0;
+  letter-spacing: 0.04em;
+}
+
+/* Center divider with arrow */
+.portfolio-compare__divider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  width: 48px;
+  background: var(--color-surface-2);
+  border-left: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.portfolio-compare__divider-line {
+  flex: 1;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--accent) 40%,
+    var(--accent) 60%,
+    transparent
+  );
+  box-shadow: 0 0 6px var(--color-accent-glow);
+  margin: 0 auto;
+}
+
+.portfolio-compare__divider-icon {
+  width: 32px; height: 32px;
+  border-radius: var(--radius-full);
+  background: var(--accent);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+  box-shadow: 0 0 12px var(--color-accent-glow);
+}
+
+/* code tags inside text */
+.portfolio-sections code {
+  font-family: var(--font-mono);
+  font-size: 0.8em;
+  background: var(--color-surface-3);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  padding: 1px 5px;
+  color: var(--accent);
+}
+
+/* ── Responsive ────────────────────────────────────────────────── */
+@media (max-width: 700px) {
+  .portfolio-compare {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    min-height: unset;
+  }
+
+  .portfolio-compare__divider {
+    flex-direction: row;
+    width: 100%;
+    height: 40px;
+    border-left: none; border-right: none;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    gap: 0;
+  }
+
+  .portfolio-compare__divider-line {
+    flex: 1; height: 2px; width: auto;
+    background: linear-gradient(to right, transparent, var(--accent) 40%, var(--accent) 60%, transparent);
+  }
+
+  .portfolio-compare__img-wrap { min-height: 220px; }
+
+  .portfolio-sections { padding: 0 1.25rem; }
+}
